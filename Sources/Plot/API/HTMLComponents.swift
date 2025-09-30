@@ -32,7 +32,6 @@ public extension Node where Context == HTML.HeadContext {
 
         return .group([
             .link(.rel(.canonical), .href(url)),
-            .meta(.name("twitter:url"), .content(url)),
             .meta(.property("og:url"), .content(url))
         ])
     }
@@ -48,7 +47,6 @@ public extension Node where Context == HTML.HeadContext {
     static func title(_ title: String) -> Node {
         .group([
             .element(named: "title", text: title),
-            .meta(.name("twitter:title"), .content(title)),
             .meta(.property("og:title"), .content(title))
         ])
     }
@@ -58,7 +56,6 @@ public extension Node where Context == HTML.HeadContext {
     static func description(_ text: String) -> Node {
         .group([
             .meta(.name("description"), .content(text)),
-            .meta(.name("twitter:description"), .content(text)),
             .meta(.property("og:description"), .content(text))
         ])
     }
@@ -70,22 +67,8 @@ public extension Node where Context == HTML.HeadContext {
         let url = url.string
 
         return .group([
-            .meta(.name("twitter:image"), .content(url)),
             .meta(.property("og:image"), .content(url))
         ])
-    }
-
-    /// Declare which card type that Twitter should use when displaying a link
-    /// to this HTML page. See `TwitterCardType` for more details.
-    /// - parameter type: The type of Twitter card to use for this page.
-    static func twitterCardType(_ type: TwitterCardType) -> Node {
-        .meta(.name("twitter:card"), .content(type.rawValue))
-    }
-    
-    /// Declare the Twitter handle of the site that Twitter should use when displaying a link
-    /// - parameter handle: The handle of the account on Twitter. For example: `@SwiftBySundell`
-    static func twitterUsername(_ username: String) -> Node {
-        .meta(.name("twitter:site"), .content(username))
     }
 
 

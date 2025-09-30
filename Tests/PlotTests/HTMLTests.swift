@@ -72,7 +72,6 @@ final class HTMLTests: XCTestCase {
         assertEqualHTMLContent(html, """
         <head>\
         <link rel="canonical" href="url.com"/>\
-        <meta name="twitter:url" content="url.com"/>\
         <meta property="og:url" content="url.com"/>\
         </head>
         """)
@@ -83,7 +82,6 @@ final class HTMLTests: XCTestCase {
         assertEqualHTMLContent(html, """
         <head>\
         <title>Title</title>\
-        <meta name="twitter:title" content="Title"/>\
         <meta property="og:title" content="Title"/>\
         </head>
         """)
@@ -94,7 +92,6 @@ final class HTMLTests: XCTestCase {
         assertEqualHTMLContent(html, """
         <head>\
         <meta name="description" content="Description"/>\
-        <meta name="twitter:description" content="Description"/>\
         <meta property="og:description" content="Description"/>\
         </head>
         """)
@@ -103,16 +100,11 @@ final class HTMLTests: XCTestCase {
     func testSocialImageMetadata() {
         let html = HTML(.head(
             .socialImageLink("url.png"),
-            .twitterCardType(.summaryLargeImage),
-            .twitterUsername("@CreatorHandle")
         ))
 
         assertEqualHTMLContent(html, """
         <head>\
-        <meta name="twitter:image" content="url.png"/>\
         <meta property="og:image" content="url.png"/>\
-        <meta name="twitter:card" content="summary_large_image"/>\
-        <meta name="twitter:site" content="@CreatorHandle"/>\
         </head>
         """)
     }
